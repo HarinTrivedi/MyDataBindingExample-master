@@ -55,7 +55,7 @@ public class DetailActivity extends AppCompatActivity {
 
         if (getIntent() != null && getIntent().hasExtra(getString(R.string.arg_model))) {
             AttractionModel model = getIntent().getParcelableExtra(getString(R.string.arg_model));
-//            imgMain.setImageResource(model.getImgDrawableId());
+            imgMain.setImageResource(model.getImgDrawableId());
             tv.setText(model.getItemDescription());
             getSupportActionBar().setTitle(model.getItemTitle());
         }
