@@ -1,21 +1,18 @@
-package com.hlabexamples.databindingexample.main;
+package com.hlabexamples.databindingexample.main.mvvm;
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.view.View;
-
-import com.hlabexamples.databindingexample.BR;
 
 /**
- * BaseObservable exmaple
+ * Created in BindingConstraintMVP-Demo on 11/01/17.
  */
-public class AttractionModel extends BaseObservable implements Parcelable {
+
+public class AttractionModel implements Parcelable {
     private int itemId;
     private String itemTitle;
     private String itemDescription;
     private int imgDrawableId = 0;
+
     private boolean isFavourite;
 
     public AttractionModel(int itemId, String itemTitle, String itemDescription, int imgDrawableId) {
@@ -63,32 +60,16 @@ public class AttractionModel extends BaseObservable implements Parcelable {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
-    }
-
     public String getItemTitle() {
         return itemTitle;
-    }
-
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
     }
 
     public String getItemDescription() {
         return itemDescription;
     }
 
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
-    }
-
     public int getImgDrawableId() {
         return imgDrawableId;
-    }
-
-    public void setImgDrawableId(int imgDrawableId) {
-        this.imgDrawableId = imgDrawableId;
     }
 
     @Override
@@ -96,20 +77,12 @@ public class AttractionModel extends BaseObservable implements Parcelable {
         return (obj instanceof AttractionModel) && ((AttractionModel) obj).getItemId() == itemId;
     }
 
-    /* --- Bindable example --- */
-
     public boolean isFavourite() {
         return isFavourite;
     }
 
     public void setFavourite(boolean favourite) {
         isFavourite = favourite;
-        notifyPropertyChanged(BR.favouriteVisibility);
-    }
-
-    @Bindable
-    public int getFavouriteVisibility() {
-        return isFavourite() ? View.VISIBLE : View.GONE;
     }
 
 }

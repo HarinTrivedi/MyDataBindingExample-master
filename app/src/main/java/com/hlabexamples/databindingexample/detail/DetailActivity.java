@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hlabexamples.databindingexample.R;
-import com.hlabexamples.databindingexample.main.AttractionModel;
+import com.hlabexamples.databindingexample.main.mvvm.AttractionModel;
 
 
 public class DetailActivity extends AppCompatActivity {

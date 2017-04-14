@@ -2,7 +2,7 @@ package com.hlabexamples.databindingexample;
 
 import android.app.Application;
 
-import com.hlabexamples.databindingexample.main.AttractionModel;
+import com.hlabexamples.databindingexample.main.mvvm.AttractionModel;
 
 import java.util.ArrayList;
 import java.util.List;

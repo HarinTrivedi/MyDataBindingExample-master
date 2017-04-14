@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.hlabexamples.databindingexample.App;
 import com.hlabexamples.databindingexample.R;
 import com.hlabexamples.databindingexample.databinding.RowItemAttractionBinding;
+import com.hlabexamples.databindingexample.main.mvvm.AttractionModel;
+import com.hlabexamples.databindingexample.main.mvvm.AttractionViewModel;
 import com.hlabexamples.databindingexample.util.LoadingViewHolder;
 
 import java.util.List;
@@ -48,7 +50,6 @@ class BrowseAttractionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == 1) {
             AttractionModel model = items.get(position);
-            model.setFavourite(App.getInstance().getFavItems().contains(model));
             ((BrowseItemHolder) holder).bind(model);
         }
     }
@@ -69,9 +70,10 @@ class BrowseAttractionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
-    private class BrowseItemHolder extends RecyclerView.ViewHolder implements BrowseItemPresenter {
+    private class BrowseItemHolder extends RecyclerView.ViewHolder implements BrowseItemListener {
 
         private RowItemAttractionBinding binding;
+        private AttractionViewModel viewModel;
 
         BrowseItemHolder(RowItemAttractionBinding binding) {
             super(binding.getRoot());
@@ -80,7 +82,11 @@ class BrowseAttractionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         void bind(AttractionModel item) {
             binding.setPresenter(this);
-            binding.setData(item);
+            //temp: get fav status
+            item.setFavourite(App.getInstance().getFavItems().contains(item));
+            // ---
+            viewModel = new AttractionViewModel(item);
+            binding.setData(viewModel);
             ViewCompat.setTransitionName(binding.imgMain, "image_" + getAdapterPosition());
         }
 
@@ -91,7 +97,8 @@ class BrowseAttractionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         @Override
         public void onMenuClick(View view) {
-            fragment.showMenu(view, binding.getData(), itemType);
+            fragment.showMenu(view, viewModel, itemType);
         }
+
     }
 }

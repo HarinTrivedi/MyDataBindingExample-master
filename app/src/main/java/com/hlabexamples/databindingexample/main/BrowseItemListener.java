@@ -2,7 +2,7 @@ package com.hlabexamples.databindingexample.main;
 
 import android.view.View;
 
-public interface BrowseItemPresenter {
+public interface BrowseItemListener {
     void onMenuClick(View view);
     void onClick();
 }

@@ -23,6 +23,8 @@ import com.hlabexamples.databindingexample.App;
 import com.hlabexamples.databindingexample.R;
 import com.hlabexamples.databindingexample.databinding.FragmentBrowseAttractionsBinding;
 import com.hlabexamples.databindingexample.detail.DetailActivity;
+import com.hlabexamples.databindingexample.main.mvvm.AttractionModel;
+import com.hlabexamples.databindingexample.main.mvvm.AttractionViewModel;
 import com.hlabexamples.databindingexample.util.EndlessRecyclerViewScrollListener;
 
 import java.util.ArrayList;
@@ -123,9 +125,9 @@ public class BrowseAttractionFragment extends Fragment implements SwipeRefreshLa
         }
     }
 
-    public void showMenu(View anchor, final AttractionModel viewModel, final ItemType itemType) {
+    public void showMenu(View anchor, final AttractionViewModel viewModel, final ItemType itemType) {
 
-        final boolean isFav = viewModel.isFavourite();
+        final boolean isFav = viewModel.getAttractionModel().isFavourite();
 
         PopupMenu popupMenu = new PopupMenu(getActivity(), anchor);
         popupMenu.inflate(R.menu.menu_more);
@@ -150,11 +152,11 @@ public class BrowseAttractionFragment extends Fragment implements SwipeRefreshLa
                         break;
                     case R.id.action_fav:
                         if (isFav) {
-                            App.getInstance().removeFromFav(viewModel);
-                            viewModel.setFavourite(false);
+                            App.getInstance().removeFromFav(viewModel.getAttractionModel());
+                            viewModel.onFavoriteChange(false);
                         } else {
-                            App.getInstance().addToFav(viewModel);
-                            viewModel.setFavourite(true);
+                            App.getInstance().addToFav(viewModel.getAttractionModel());
+                            viewModel.onFavoriteChange(true);
                         }
                         break;
                 }
@@ -247,4 +249,6 @@ public class BrowseAttractionFragment extends Fragment implements SwipeRefreshLa
             R.drawable.img_travel7,
             R.drawable.img_travel8
     };
+
+
 }

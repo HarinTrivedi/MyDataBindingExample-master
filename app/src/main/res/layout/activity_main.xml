@@ -6,7 +6,7 @@
 
         <variable
             name="name"
-            type="java.lang.String" />
+            type="String" />
 
     </data>
 
@@ -29,17 +29,18 @@
                 android:paddingEnd="@dimen/activity_vertical_margin"
                 android:paddingStart="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_horizontal_margin"
-                android:text='@{"Welcome, " + name}'
                 android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:greetings="@{name}" />
+            <!--app:age='@{"01-01-1991"}'-->
 
             <FrameLayout
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/activity_vertical_margin"
+                android:layout_below="@+id/message"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_below="@+id/message" />
+                android:layout_marginStart="@dimen/activity_vertical_margin" />
 
         </RelativeLayout>
 
