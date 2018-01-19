@@ -6,3 +6,7 @@
 
 # Sample
 ![Demo](https://i.imgur.com/Ca6xkAS.png)
+
+***
+
+### [@Harry's Lab](https://github.com/HarinTrivedi)
